@@ -1,5 +1,7 @@
 package ai0922;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -9,7 +11,7 @@ public class LAB_DecodeSecureTest {
         try {
             String line = "";
             String decode = "";
-            BufferedReade br = new BufferedReader(new FileReader("secure.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("secure.txt"));
             FileWriter fw = new FileWriter("decodeSecure.txt");
 
             while (true) {

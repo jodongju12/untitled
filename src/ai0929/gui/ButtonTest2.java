@@ -12,7 +12,7 @@ public class ButtonTest2 extends JFrame {
 
 
         // 버튼을 창 정중앙에 배치
-        setLayout(new GridBagLayout());
+        setLayout(new FlowLayout());
 
         setTitle("Button 컴포넌트");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -41,7 +41,8 @@ public class ButtonTest2 extends JFrame {
         int x = location[0];
         int y = location[1];
 
-        setBounds(x, y, w, h);
+        setSize(w, h);
+        setLocation(x, y);
 
         setVisible(true);
     }

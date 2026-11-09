@@ -48,7 +48,7 @@ public class MenuTest extends JFrame {
 
     public MenuTest() {
 
-        setTitle("NEXUS - Premium Text Studio");
+        setTitle("NEXUS - 프리미엄 텍스트 스튜디오");
         setSize(1150, 760);
         setMinimumSize(new Dimension(850, 600));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -56,7 +56,7 @@ public class MenuTest extends JFrame {
 
         chooser = new JFileChooser();
         chooser.setFileFilter(
-                new FileNameExtensionFilter("Text Files (*.txt)", "txt")
+                new FileNameExtensionFilter("텍스트 파일 (*.txt)", "txt")
         );
 
         createUI();
@@ -114,11 +114,11 @@ public class MenuTest extends JFrame {
         logoPanel.setMaximumSize(new Dimension(200, 55));
 
         JLabel logo = new JLabel("✦");
-        logo.setFont(new Font("Segoe UI", Font.BOLD, 35));
+        logo.setFont(new Font("Malgun Gothic", Font.BOLD, 35));
         logo.setForeground(CYAN);
 
         JLabel brand = new JLabel(" NEXUS");
-        brand.setFont(new Font("Segoe UI", Font.BOLD, 23));
+        brand.setFont(new Font("Malgun Gothic", Font.BOLD, 23));
         brand.setForeground(WHITE);
 
         logoPanel.add(logo);
@@ -127,7 +127,7 @@ public class MenuTest extends JFrame {
         sidebar.add(logoPanel);
 
         JLabel subtitle = label(
-                "CREATIVE TEXT STUDIO",
+                "크리에이티브 텍스트 스튜디오",
                 9,
                 Font.BOLD,
                 GRAY
@@ -136,34 +136,34 @@ public class MenuTest extends JFrame {
         subtitle.setBorder(new EmptyBorder(0, 4, 35, 0));
         sidebar.add(subtitle);
 
-        sidebar.add(section("WORKSPACE"));
+        sidebar.add(section("작업 공간"));
 
-        sidebar.add(sideButton("▣", "Editor", true));
-        sidebar.add(sideButton("◈", "Documents", false));
-        sidebar.add(sideButton("◷", "Recent Files", false));
-
-        sidebar.add(Box.createVerticalStrut(35));
-
-        sidebar.add(section("QUICK ACTIONS"));
-
-        sidebar.add(sideButton("＋", "New Document", false));
-        sidebar.add(sideButton("↗", "Open File", false));
-        sidebar.add(sideButton("↓", "Save Document", false));
+        sidebar.add(sideButton("▣", "편집기", true));
+        sidebar.add(sideButton("◈", "문서 목록", false));
+        sidebar.add(sideButton("◷", "최근 파일", false));
 
         sidebar.add(Box.createVerticalStrut(35));
 
-        sidebar.add(section("COLOR THEMES"));
+        sidebar.add(section("빠른 실행"));
 
-        sidebar.add(createThemeButton("MIDNIGHT BLUE",
+        sidebar.add(sideButton("＋", "새 문서", false));
+        sidebar.add(sideButton("↗", "파일 열기", false));
+        sidebar.add(sideButton("↓", "문서 저장", false));
+
+        sidebar.add(Box.createVerticalStrut(35));
+
+        sidebar.add(section("색상 테마"));
+
+        sidebar.add(createThemeButton("미드나이트 블루",
                 new Color(17, 23, 42)));
 
-        sidebar.add(createThemeButton("DEEP PURPLE",
+        sidebar.add(createThemeButton("딥 퍼플",
                 new Color(35, 22, 57)));
 
-        sidebar.add(createThemeButton("DARK GREEN",
+        sidebar.add(createThemeButton("다크 그린",
                 new Color(17, 42, 37)));
 
-        sidebar.add(createThemeButton("PURE WHITE",
+        sidebar.add(createThemeButton("순백색",
                 Color.WHITE));
 
         sidebar.add(Box.createVerticalGlue());
@@ -179,7 +179,7 @@ public class MenuTest extends JFrame {
 
         JLabel avatar = new JLabel("N");
         avatar.setHorizontalAlignment(SwingConstants.CENTER);
-        avatar.setFont(new Font("Segoe UI", Font.BOLD, 19));
+        avatar.setFont(new Font("Malgun Gothic", Font.BOLD, 19));
         avatar.setForeground(Color.WHITE);
 
         avatar.setOpaque(true);
@@ -190,8 +190,8 @@ public class MenuTest extends JFrame {
         userInfo.setOpaque(false);
         userInfo.setLayout(new BoxLayout(userInfo, BoxLayout.Y_AXIS));
 
-        userInfo.add(label("NEXUS USER", 11, Font.BOLD, WHITE));
-        userInfo.add(label("Premium Workspace", 9, Font.PLAIN, GRAY));
+        userInfo.add(label("넥서스 사용자", 11, Font.BOLD, WHITE));
+        userInfo.add(label("프리미엄 작업 공간", 9, Font.PLAIN, GRAY));
 
         profile.add(avatar, BorderLayout.WEST);
         profile.add(userInfo, BorderLayout.CENTER);
@@ -257,13 +257,13 @@ public class MenuTest extends JFrame {
             public void mouseClicked(MouseEvent e) {
 
                 switch (name) {
-                    case "New Document":
+                    case "새 문서":
                         newFile();
                         break;
-                    case "Open File":
+                    case "파일 열기":
                         openFile();
                         break;
-                    case "Save Document":
+                    case "문서 저장":
                         saveFile();
                         break;
                 }
@@ -335,14 +335,14 @@ public class MenuTest extends JFrame {
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
 
         JLabel heading = label(
-                "Your Creative Space",
+                "나만의 창작 공간",
                 24,
                 Font.BOLD,
                 WHITE
         );
 
         JLabel description = label(
-                "Create something extraordinary.",
+                "멋진 작품을 만들어 보세요.",
                 12,
                 Font.PLAIN,
                 GRAY
@@ -356,13 +356,13 @@ public class MenuTest extends JFrame {
         right.setOpaque(false);
 
         JLabel online = label(
-                "● SYSTEM ONLINE",
+                "● 시스템 온라인",
                 10,
                 Font.BOLD,
                 CYAN
         );
 
-        JButton save = new ModernButton("SAVE", BLUE);
+        JButton save = new ModernButton("저장", BLUE);
         save.addActionListener(e -> saveFile());
 
         right.add(online);
@@ -410,14 +410,14 @@ public class MenuTest extends JFrame {
         ));
 
         fileNameLabel = label(
-                "Untitled Document",
+                "제목 없는 문서",
                 16,
                 Font.BOLD,
                 WHITE
         );
 
         JLabel documentDescription = label(
-                "TEXT DOCUMENT  /  UTF-8",
+                "텍스트 문서  /  UTF-8",
                 9,
                 Font.BOLD,
                 GRAY
@@ -428,7 +428,7 @@ public class MenuTest extends JFrame {
         documentInfo.add(documentDescription);
 
         JLabel live = label(
-                "● LIVE EDITOR",
+                "● 실시간 편집기",
                 10,
                 Font.BOLD,
                 CYAN
@@ -443,7 +443,7 @@ public class MenuTest extends JFrame {
         textArea = new JTextArea();
 
         textArea.setFont(
-                new Font("Consolas", Font.PLAIN, 16)
+                new Font("Malgun Gothic", Font.PLAIN, 16)
         );
 
         textArea.setBackground(editorBackground);
@@ -477,7 +477,7 @@ public class MenuTest extends JFrame {
 
         // 편집창 아래 설명
         JLabel hint = label(
-                "TIP  •  Start typing to create your document",
+                "안내  •  입력을 시작해 문서를 작성하세요",
                 10,
                 Font.PLAIN,
                 GRAY
@@ -526,9 +526,9 @@ public class MenuTest extends JFrame {
 
         left.setOpaque(false);
 
-        addTool(left, "＋  NEW", "New Document", e -> newFile());
-        addTool(left, "▣  OPEN", "Open File", e -> openFile());
-        addTool(left, "↓  SAVE", "Save Document", e -> saveFile());
+        addTool(left, "＋  새 문서", "새 문서", e -> newFile());
+        addTool(left, "▣  열기", "파일 열기", e -> openFile());
+        addTool(left, "↓  저장", "문서 저장", e -> saveFile());
 
         JPanel right = new JPanel(
                 new FlowLayout(FlowLayout.RIGHT, 8, 0)
@@ -537,7 +537,7 @@ public class MenuTest extends JFrame {
         right.setOpaque(false);
 
         JLabel themeLabel = label(
-                "EDITOR TOOLS",
+                "편집 도구",
                 9,
                 Font.BOLD,
                 GRAY
@@ -577,7 +577,7 @@ public class MenuTest extends JFrame {
         );
 
         statusLabel = label(
-                "● READY",
+                "● 준비",
                 10,
                 Font.BOLD,
                 new Color(74, 222, 128)
@@ -590,14 +590,14 @@ public class MenuTest extends JFrame {
         right.setOpaque(false);
 
         lineLabel = label(
-                "LINES  1",
+                "줄 수  1",
                 10,
                 Font.BOLD,
                 GRAY
         );
 
         wordLabel = label(
-                "CHARACTERS  0",
+                "글자 수  0",
                 10,
                 Font.BOLD,
                 GRAY
@@ -622,8 +622,8 @@ public class MenuTest extends JFrame {
         currentFile = null;
         modified = false;
 
-        fileNameLabel.setText("Untitled Document");
-        statusLabel.setText("● NEW DOCUMENT");
+        fileNameLabel.setText("제목 없는 문서");
+        statusLabel.setText("● 새 문서");
 
         textArea.requestFocusInWindow();
     }
@@ -650,11 +650,11 @@ public class MenuTest extends JFrame {
                 modified = false;
 
                 fileNameLabel.setText(file.getName());
-                statusLabel.setText("● FILE OPENED");
+                statusLabel.setText("● 파일 열림");
 
             } catch (IOException ex) {
 
-                showError("Unable to open file.", ex);
+                showError("파일을 열 수 없습니다.", ex);
             }
         }
     }
@@ -687,11 +687,11 @@ public class MenuTest extends JFrame {
             modified = false;
 
             fileNameLabel.setText(currentFile.getName());
-            statusLabel.setText("● SAVED SUCCESSFULLY");
+            statusLabel.setText("● 저장 완료");
 
         } catch (IOException ex) {
 
-            showError("Unable to save file.", ex);
+            showError("파일을 저장할 수 없습니다.", ex);
         }
     }
 
@@ -701,8 +701,8 @@ public class MenuTest extends JFrame {
 
         int result = JOptionPane.showConfirmDialog(
                 this,
-                "You have unsaved changes. Continue without saving?",
-                "Unsaved Changes",
+                "저장하지 않은 변경 사항이 있습니다. 저장하지 않고 계속하시겠습니까?",
+                "저장하지 않은 변경 사항",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE
         );
@@ -740,7 +740,7 @@ public class MenuTest extends JFrame {
 
         textArea.getParent().setBackground(editorBackground);
 
-        statusLabel.setText("● THEME UPDATED");
+        statusLabel.setText("● 테마 변경됨");
     }
 
     // ================= DOCUMENT STATUS =================
@@ -753,18 +753,18 @@ public class MenuTest extends JFrame {
 
         int lines = textArea.getLineCount();
 
-        lineLabel.setText("LINES  " + lines);
-        wordLabel.setText("CHARACTERS  " + characters);
+        lineLabel.setText("줄 수  " + lines);
+        wordLabel.setText("글자 수  " + characters);
 
         if (currentFile != null) {
             fileNameLabel.setText(
                     currentFile.getName() + "  *"
             );
         } else {
-            fileNameLabel.setText("Untitled Document  *");
+            fileNameLabel.setText("제목 없는 문서  *");
         }
 
-        statusLabel.setText("● UNSAVED CHANGES");
+        statusLabel.setText("● 저장되지 않은 변경 사항");
     }
 
     // ================= MENU BAR =================
@@ -772,39 +772,60 @@ public class MenuTest extends JFrame {
     private void createMenu() {
 
         JMenuBar menuBar = new JMenuBar();
-
         menuBar.setBackground(SIDEBAR);
-        menuBar.setBorder(
-                new EmptyBorder(5, 10, 5, 10)
-        );
+        menuBar.setBorder(new EmptyBorder(5, 10, 5, 10));
 
-        JMenu file = new JMenu("File");
-        JMenu edit = new JMenu("Edit");
+        JMenu file = new JMenu("파일");
+        JMenu edit = new JMenu("편집");
 
-        addMenuItem(file, "New", e -> newFile());
-        addMenuItem(file, "Open", e -> openFile());
-        addMenuItem(file, "Save", e -> saveFile());
-
+        addMenuItem(file, "새 문서", e -> newFile());
+        addMenuItem(file, "열기", e -> openFile());
+        addMenuItem(file, "저장", e -> saveFile());
+        addMenuItem(file, "다른 이름으로 저장...", e -> saveAsFile());
         file.addSeparator();
+        addMenuItem(file, "종료", e -> closeApplication());
 
-        addMenuItem(file, "Close", e -> closeApplication());
-
-        addMenuItem(edit, "Midnight Blue",
+        addMenuItem(edit, "잘라내기", e -> textArea.cut());
+        addMenuItem(edit, "복사", e -> textArea.copy());
+        addMenuItem(edit, "붙여넣기", e -> textArea.paste());
+        addMenuItem(edit, "전체 선택", e -> textArea.selectAll());
+        edit.addSeparator();
+        addMenuItem(edit, "미드나이트 블루",
                 e -> changeBackground(new Color(17, 23, 42)));
-
-        addMenuItem(edit, "Deep Purple",
+        addMenuItem(edit, "딥 퍼플",
                 e -> changeBackground(new Color(35, 22, 57)));
-
-        addMenuItem(edit, "Dark Green",
+        addMenuItem(edit, "다크 그린",
                 e -> changeBackground(new Color(17, 42, 37)));
-
-        addMenuItem(edit, "White",
+        addMenuItem(edit, "화이트",
                 e -> changeBackground(Color.WHITE));
 
         menuBar.add(file);
         menuBar.add(edit);
-
         setJMenuBar(menuBar);
+    }
+
+    private void saveAsFile() {
+        JFileChooser saveChooser = new JFileChooser();
+        saveChooser.setFileFilter(
+                new FileNameExtensionFilter("텍스트 파일 (*.txt)", "txt")
+        );
+
+        if (currentFile != null) {
+            saveChooser.setSelectedFile(currentFile);
+        } else {
+            saveChooser.setSelectedFile(new File("제목 없는 문서.txt"));
+        }
+
+        if (saveChooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+        File selectedFile = saveChooser.getSelectedFile();
+        if (!selectedFile.getName().toLowerCase().endsWith(".txt")) {
+            selectedFile = new File(selectedFile.getAbsolutePath() + ".txt");
+        }
+        currentFile = selectedFile;
+        saveFile();
     }
 
     private void addMenuItem(
@@ -831,7 +852,7 @@ public class MenuTest extends JFrame {
         JLabel label = new JLabel(text);
 
         label.setFont(
-                new Font("Segoe UI", style, size)
+                new Font("Malgun Gothic", style, size)
         );
 
         label.setForeground(color);
@@ -888,7 +909,7 @@ public class MenuTest extends JFrame {
 
             baseColor = color;
 
-            setFont(new Font("Segoe UI", Font.BOLD, 11));
+            setFont(new Font("Malgun Gothic", Font.BOLD, 11));
             setForeground(WHITE);
 
             setPreferredSize(new Dimension(95, 37));
@@ -948,7 +969,7 @@ public class MenuTest extends JFrame {
         JOptionPane.showMessageDialog(
                 this,
                 message + "\n" + ex.getMessage(),
-                "NEXUS ERROR",
+                "넥서스 오류",
                 JOptionPane.ERROR_MESSAGE
         );
     }
@@ -973,3 +994,8 @@ public class MenuTest extends JFrame {
         });
     }
 }
+
+
+
+
+

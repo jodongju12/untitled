@@ -1,6 +1,8 @@
+
 package book_management.domain;
 
 public class Book {
+
     private String isbn;
     private String name;
     private String author;
@@ -34,27 +36,34 @@ public class Book {
     }
 
     public int getPrice() {
-        return 0;
+        return price;
     }
 
     public void setPrice(int price) {
+        this.price = price;
     }
 
-    public void setCategory_name(String categoryName) {
+    public int getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(int inventory) {
+        this.inventory = inventory;
+    }
+
+    public String getPublish_name() {
+        return publish_name;
     }
 
     public void setPublish_name(String publishName) {
+        this.publish_name = publishName;
     }
 
-    public Object getPublish_name() {
-        return null;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public Object getInventory() {
-        return null;
-    }
-
-    public Object getCategory_name() {
-        return null;
+    public void setCategory_name(String categoryName) {
+        this.category_name = categoryName;
     }
 }

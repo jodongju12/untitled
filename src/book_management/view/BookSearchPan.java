@@ -1,28 +1,48 @@
+
 package book_management.view;
 
 import book_management.domain.Book;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class BookSearchPan extends JPanel {
+
     JTextField fieldSearch = new JTextField(20);
+
     JButton btnSearch = new JButton("검색");
-    String[] comboStr = {"도서명", "출판사명", "저자명"};
-    JComboBox<String> combo = new JComboBox<String>(comboStr);
+
+    String[] comboStr = {
+            "도서명", "출판사명", "저자명"
+    };
+
+    JComboBox<String> combo =
+            new JComboBox<>(comboStr);
+
     JTable table;
+
     DefaultTableModel model;
-    String[] tableHeader = {"도서번호", "도서명", "저자명", "출판사", "도서가격", "재고량", "카테고리"};
+
+    String[] tableHeader = {
+            "도서번호", "도서명", "저자명",
+            "출판사", "도서가격", "재고량", "카테고리"
+    };
+
     ArrayList<Book> bookList;
+
     String searchWord;
 
-    public BookSearchPan(){
+    public BookSearchPan() {
+
         setLayout(new BorderLayout());
 
         JPanel panN = new JPanel();
+
         JLabel lbl = new JLabel("검색어: ");
+
         panN.add(lbl);
         panN.add(fieldSearch);
         panN.add(combo);
@@ -31,8 +51,10 @@ public class BookSearchPan extends JPanel {
         add("North", panN);
     }
 
-    public void initView(){
-        model = new DefaultTableModel(tableHeader, bookList.size()){
+    public void initView() {
+
+        model = new DefaultTableModel(tableHeader, 0) {
+
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -41,43 +63,73 @@ public class BookSearchPan extends JPanel {
 
         table = new JTable(model);
 
+        TableColumnModel tcm = table.getColumnModel();
+
+        tcm.getColumn(0).setPreferredWidth(70);
+        tcm.getColumn(1).setPreferredWidth(200);
+        tcm.getColumn(2).setPreferredWidth(100);
+        tcm.getColumn(3).setPreferredWidth(100);
+        tcm.getColumn(4).setPreferredWidth(70);
+        tcm.getColumn(5).setPreferredWidth(70);
+        tcm.getColumn(6).setPreferredWidth(90);
+
         JScrollPane scroll = new JScrollPane(table);
-        putSearchResult();
 
         add("Center", scroll);
+
+        putSearchResult();
     }
 
-//    DefaultTableModel을 사용해서 각 셀에 도서 정보 값을 설정
-    public void putSearchResult(){
-        model.setRowCount(bookList.size());
-        Book book = null;
+    // 검색 결과 테이블 출력
+    public void putSearchResult() {
 
-        for (int i = 0; i < bookList.size(); i++) {
-            book = bookList.get(i);
-            model.setValueAt(book.getIsbn(), i, 0);
-            model.setValueAt(book.getName(), i, 1);
-            model.setValueAt(book.getAuthor(), i, 2);
-            model.setValueAt(book.getPublish_name(), i, 3);
-            model.setValueAt(book.getPrice(), i, 4);
-            model.setValueAt(book.getInventory(), i, 5);
-            model.setValueAt(book.getCategory_name(), i, 6);
+        if (model == null) {
+            return;
+        }
+
+        model.setRowCount(0);
+
+        if (bookList == null) {
+            return;
+        }
+
+        for (Book book : bookList) {
+
+            Object[] row = {
+                    book.getIsbn(),
+                    book.getName(),
+                    book.getAuthor(),
+                    book.getPublish_name(),
+                    book.getPrice(),
+                    book.getInventory(),
+                    book.getCategory_name()
+            };
+
+            model.addRow(row);
         }
     }
 
+    // 도서 목록 설정
     public void setBookList(ArrayList<Book> bookList) {
+
         this.bookList = bookList;
     }
 
-    public String getSearchWord() {
-        searchWord = fieldSearch.getText();
-        return searchWord;
-    }
-
-    public JButton getBtnSearch() {
-        return btnSearch;
-    }
-
+    // 콤보박스 반환
     public JComboBox<String> getCombo() {
+
         return combo;
+    }
+
+    // 검색어 반환
+    public String getSearchWord() {
+
+        return fieldSearch.getText();
+    }
+
+    // 검색 버튼 반환
+    public JButton getBtnSearch() {
+
+        return btnSearch;
     }
 }

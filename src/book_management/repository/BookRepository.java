@@ -1,4 +1,3 @@
-
 package book_management.repository;
 
 import book_management.domain.Book;
@@ -36,7 +35,8 @@ public class BookRepository {
                         "FROM book b, category c, publish p " +
                         "WHERE b.category_id = c.category_id " +
                         "AND b.publish_id = p.publish_id " +
-                        "AND " + columnName[selectedIndex] + " LIKE ?";
+                        "AND " + columnName[selectedIndex] + " LIKE ? " +
+                        "ORDER BY b.isbn";
 
         bookList = new ArrayList<>();
 
@@ -90,9 +90,7 @@ public class BookRepository {
                         "(isbn, name, author, price, inventory, category_id, publish_id) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        // 출판사명을 ID로 변환
         int publish_id = 0;
-
         String publishName = String.valueOf(book.getPublish_name());
 
         if (publishName.equals("한빛아카데미")) {
@@ -105,9 +103,7 @@ public class BookRepository {
             publish_id = 4;
         }
 
-        // 카테고리명을 ID로 변환
         int category_id = 0;
-
         String categoryName = String.valueOf(book.getCategory_name());
 
         if (categoryName.equals("IT도서")) {
@@ -139,27 +135,79 @@ public class BookRepository {
             pstmt.setString(1, book.getIsbn());
             pstmt.setString(2, book.getName());
             pstmt.setString(3, book.getAuthor());
-
             pstmt.setInt(4, book.getPrice());
             pstmt.setInt(5, book.getInventory());
-
             pstmt.setInt(6, category_id);
             pstmt.setInt(7, publish_id);
 
-            // 실제 DB 저장 실행
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
-
             throw new RuntimeException(e);
-
         } finally {
-
             try {
                 con.close();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    // 도서 수정
+    public void update(Book book) throws SQLException {
+        Connection con = JDBCConnector.getConnection();
+        String sql = "UPDATE book SET name=?, author=?, price=?, inventory=?, category_id=?, publish_id=? WHERE isbn=?";
+        PreparedStatement pstmt = null;
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, book.getName());
+            pstmt.setString(2, book.getAuthor());
+            pstmt.setInt(3, book.getPrice());
+            pstmt.setInt(4, book.getInventory());
+
+            int category_id = 0;
+            switch (book.getCategory_name()) {
+                case "IT도서":
+                    category_id = 10;
+                    break;
+                case "소설":
+                    category_id = 20;
+                    break;
+                case "수필":
+                    category_id = 30;
+                    break;
+                case "시":
+                    category_id = 40;
+                    break;
+            }
+
+            int publish_id = 0;
+            switch (book.getPublish_name()) {
+                case "한빛아카데미":
+                    publish_id = 1;
+                    break;
+                case "생능출판사":
+                    publish_id = 2;
+                    break;
+                case "민음사":
+                    publish_id = 3;
+                    break;
+                case "해냄출판사":
+                    publish_id = 4;
+                    break;
+            }
+
+            pstmt.setInt(5, category_id);
+            pstmt.setInt(6, publish_id);
+            pstmt.setString(7, book.getIsbn());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (pstmt != null) pstmt.close();
+            if (con != null) con.close();
         }
     }
 }

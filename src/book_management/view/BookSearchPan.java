@@ -1,4 +1,3 @@
-
 package book_management.view;
 
 import book_management.domain.Book;
@@ -28,7 +27,7 @@ public class BookSearchPan extends JPanel {
 
     String[] tableHeader = {
             "도서번호", "도서명", "저자명",
-            "출판사", "도서가격", "재고량", "카테고리"
+            "출판사", "가격", "재고량", "카테고리"
     };
 
     ArrayList<Book> bookList;
@@ -65,13 +64,13 @@ public class BookSearchPan extends JPanel {
 
         TableColumnModel tcm = table.getColumnModel();
 
-        tcm.getColumn(0).setPreferredWidth(70);
+        tcm.getColumn(0).setPreferredWidth(50);
         tcm.getColumn(1).setPreferredWidth(200);
-        tcm.getColumn(2).setPreferredWidth(100);
+        tcm.getColumn(2).setPreferredWidth(150);
         tcm.getColumn(3).setPreferredWidth(100);
-        tcm.getColumn(4).setPreferredWidth(70);
-        tcm.getColumn(5).setPreferredWidth(70);
-        tcm.getColumn(6).setPreferredWidth(90);
+        tcm.getColumn(4).setPreferredWidth(50);
+        tcm.getColumn(5).setPreferredWidth(50);
+        tcm.getColumn(6).setPreferredWidth(100);
 
         JScrollPane scroll = new JScrollPane(table);
 
